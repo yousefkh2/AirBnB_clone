@@ -5,6 +5,8 @@ Module: engine
 mange saved and loaded files
 """
 import json
+from models.base_model import BaseModel
+
 
 class FileStorage:
     """
