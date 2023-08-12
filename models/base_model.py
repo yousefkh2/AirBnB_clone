@@ -7,7 +7,7 @@ Create base object, it will be useful to be used as superclass
 
 import datetime as dt
 import uuid
-
+from models.__init__ import storage
 class BaseModel:
     """
     Base class to be inherited
