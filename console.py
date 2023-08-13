@@ -15,10 +15,10 @@ from models.state import State
 from models.review import Review
 from models.user import User
 
+
 class HBNBCommand(cmd.Cmd):
     """Intialize User console commands"""
     prompt = '(hbnb) '
-
 
     def __init__(self):
         super().__init__()
@@ -74,16 +74,15 @@ class HBNBCommand(cmd.Cmd):
             del self.objects[key]
             storage.save()
 
-
     def do_all(self, line):
         """print string representation of all objects
         based on valid given class or not"""
         lst = []
         if self.__is_valid_input(line, 1 if line else 0):
-            for k, v in self.objects:
+            for k, v in self.objects.items():
                 if line and line not in k:
                     continue
-                lst.append()
+                lst.append(v.__str__())
             print(lst)
 
     def do_update(self, line):
@@ -107,9 +106,9 @@ class HBNBCommand(cmd.Cmd):
             obj = self.objects.get(".".join(args[:2]))
             if hasattr(obj, args[2]):
                 obj_attr = getattr(obj, args[2])
-                setattr(obj, args[2], type(obj_attr)(args[3]))
+                setattr(obj, args[2], type(obj_attr)(args[3].replace('"', '')))
             else:
-                setattr(obj, args[2], args[3])
+                setattr(obj, args[2], args[3].replace('"', ''))
             storage.save()
 
     def emptyline(self):

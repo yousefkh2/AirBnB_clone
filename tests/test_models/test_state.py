@@ -11,6 +11,7 @@ import sys
 import json
 from models.base_model import BaseModel
 
+
 class TestState(unittest.TestCase):
 
     def setUp(self):
@@ -23,12 +24,12 @@ class TestState(unittest.TestCase):
         self.assertIsInstance(self.c1, BaseModel)
 
     def test_existing_attributes(self):
-         """test if attributes is existing"""
-         attr_lst = dir(self.c1)
-         self.assertIn('name', attr_lst)
-         self.assertIn("id", attr_lst)
-         self.assertIn("created_at", attr_lst)
-         self.assertIn("updated_at", attr_lst)
+        """test if attributes is existing"""
+        attr_lst = dir(self.c1)
+        self.assertIn('name', attr_lst)
+        self.assertIn("id", attr_lst)
+        self.assertIn("created_at", attr_lst)
+        self.assertIn("updated_at", attr_lst)
 
     def test_attributes_types(self):
         """Assert that object attributes has right types"""

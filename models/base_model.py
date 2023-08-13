@@ -7,8 +7,8 @@ Create base object, it will be useful to be used as superclass
 
 import datetime as dt
 import uuid
-#from models import storage
 import models
+
 
 class BaseModel:
     """
@@ -26,7 +26,6 @@ class BaseModel:
         else:
             self.__new()
 
-
     def __new(self):
         """Set new Instance attributes"""
         self.id = str(uuid.uuid4())
@@ -40,15 +39,14 @@ class BaseModel:
             if attr != "__class__":
                 setattr(self, attr, value)
         self.created_at = dt.datetime.strptime(self.created_at,
-                                               "%Y-%m-%dT%H:%M:%S.%f")
+                                                       "%Y-%m-%dT%H:%M:%S.%f")
         self.updated_at = dt.datetime.strptime(self.updated_at,
-                                               "%Y-%m-%dT%H:%M:%S.%f")
+                                                       "%Y-%m-%dT%H:%M:%S.%f")
 
     def save(self):
         """save object to file (Note:update object attributes (updated_at))"""
         self.updated_at = dt.datetime.now()
         models.storage.save()
-
 
     def to_dict(self):
         """Create a dictionary representation of instance attributes"""
@@ -62,4 +60,3 @@ class BaseModel:
         """Instance string repr"""
         return "[{}] ({}) {}".format(self.__class__.__name__,
                                      self.id, self.__dict__)
-
