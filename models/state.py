@@ -16,6 +16,4 @@ class State(base_model.BaseModel):
     name: (string) state name
     """
 
-    def __inti__(self):
-        self.super().__init__()
-        self.name = ""
+    name = ""

@@ -19,9 +19,7 @@ class User(base_model.BaseModel):
         last_name: (string) user last name
     """
 
-    def __inti__(self):
-        self.super().__inti__()
-        self.email = ""
-        self.passowrd = ""
-        self.first_name = ""
-        self.last_name = ""
+    email = ""
+    password = ""
+    first_name = ""
+    last_name = ""

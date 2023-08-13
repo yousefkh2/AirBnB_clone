@@ -18,8 +18,6 @@ class Review(base_model.BaseModel):
     text: (string) represent review
     """
 
-    def __inti__(self):
-        self.super().__init__()
-        self.place_id = ""
-        self.user_id = ""
-        self.text = ""
+    place_id = ""
+    user_id = ""
+    text = ""

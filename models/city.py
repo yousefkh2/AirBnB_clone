@@ -17,7 +17,5 @@ class City(base_model.BaseModel):
     name: (string) city name
     """
 
-    def __inti__(self):
-        self.super().__init__()
-        self.name = ""
-        self.state_id = ""
+    name = ""
+    state_id = ""

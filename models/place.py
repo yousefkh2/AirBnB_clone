@@ -23,20 +23,18 @@ class Place(base_model.BaseModel):
     price_by_night: (Integer)
     latitude: (Float)
     longitude: (float)
-    amenity_ids: (list of strings) 
+    amenity_ids: (list of strings)
     """
 
-    def __inti__(self):
-        self.super().__init__()
-        self.name = ""
-        self.city_id = ""
-        self.user_id = ""
-        self.description = ""
-        self.number_rooms = 0
-        self.number_bathrooms = 0
-        self.max_guest = 0
-        self.price_by_night = 0
-        self.latitude = 0.0
-        self.longitude = 0.0
-        self.amenity_ids = []
+    name = ""
+    city_id = ""
+    user_id = ""
+    description = ""
+    number_rooms = 0
+    number_bathrooms = 0
+    max_guest = 0
+    price_by_night = 0
+    latitude = 0.0
+    longitude = 0.0
+    amenity_ids = []
         

@@ -79,21 +79,37 @@ class HBNBCommand(cmd.Cmd):
         """print string representation of all objects
         based on valid given class or not"""
         lst = []
-        if not line:
-            for v in self.objects.values():
-                lst.append(v.__str__())
-        elif self.__is_valid_input(line, 1):
-            for k, v in self.objects.items():
-                if line in k:
-                    lst.append(v.__str__())
-        print(lst)
+        if self.__is_valid_input(line, 1 if line else 0):
+            for k, v in self.objects:
+                if line and line not in k:
+                    continue
+                lst.append()
+            print(lst)
 
     def do_update(self, line):
         """Update object attribute"""
         if self.__is_valid_input(line, 4):
-            args = line.split()[:4]
+            def handle_args(text):
+                lst = []
+                arg = ""
+                is_quote = False
+                for char in text:
+                    if char == "'" or char == '"':
+                        is_quote = not is_quote
+                    if char == " " and not is_quote:
+                        lst.append(arg)
+                        arg = ""
+                    else:
+                        arg += char
+                lst.append(arg)
+                return lst
+            args = handle_args(line)
             obj = self.objects.get(".".join(args[:2]))
-            setattr(obj, args[2], str(args[3]))
+            if hasattr(obj, args[2]):
+                obj_attr = getattr(obj, args[2])
+                setattr(obj, args[2], type(obj_attr)(args[3]))
+            else:
+                setattr(obj, args[2], args[3])
             storage.save()
 
     def emptyline(self):

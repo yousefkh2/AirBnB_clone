@@ -16,6 +16,4 @@ class Amenity(base_model.BaseModel):
     name: (string) amenity name
     """
 
-    def __inti__(self):
-        self.super().__init__()
-        self.name = ""
+    name = ""
