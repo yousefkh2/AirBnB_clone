@@ -18,7 +18,7 @@ from models.user import User
 
 class HBNBCommand(cmd.Cmd):
     """Intialize User console commands"""
-    prompt = '(hbnb) '
+    prompt = "(hbnb) "
 
     def __init__(self):
         super().__init__()
@@ -57,7 +57,7 @@ class HBNBCommand(cmd.Cmd):
         """Create new instance"""
         if self.__is_valid_input(line):
             obj = eval(line)()
-            obj.save()
+            storage.save()
             print(obj.id)
 
     def do_show(self, line):
@@ -124,6 +124,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_EOF(self, line):
         """Exit the program"""
+        print()
         return True
 
 
