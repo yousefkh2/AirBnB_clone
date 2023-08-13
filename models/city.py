@@ -4,7 +4,7 @@ Module: models
 
 Create city class (inherited from BaseModel)
 """
-import base_model
+from models import base_model
 
 
 class City(base_model.BaseModel):

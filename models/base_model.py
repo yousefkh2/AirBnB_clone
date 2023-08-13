@@ -7,7 +7,8 @@ Create base object, it will be useful to be used as superclass
 
 import datetime as dt
 import uuid
-from models.__init__ import storage
+#from models import storage
+
 class BaseModel:
     """
     Base class to be inherited
@@ -26,6 +27,7 @@ class BaseModel:
 
 
     def __new(self):
+        """Set new Instance attributes"""
         self.id = str(uuid.uuid4())
         self.created_at = dt.datetime.now()
         self.updated_at = dt.datetime.now()
@@ -42,12 +44,13 @@ class BaseModel:
                                                "%Y-%m-%dT%H:%M:%S.%f")
 
     def save(self):
-        """update object attributes"""
+        """save object to file (Note:update object attributes (updated_at))"""
         self.updated_at = dt.datetime.now()
         storage.save()
 
+
     def to_dict(self):
-        """Create a dictionary from object attributes"""
+        """Create a dictionary representation of instance attributes"""
         obj_dict = self.__dict__.copy()
         obj_dict["__class__"] = self.__class__.__name__
         obj_dict["created_at"] = obj_dict["created_at"].isoformat()
@@ -59,8 +62,3 @@ class BaseModel:
         return "[{}] ({}) {}".format(self.__class__.__name__,
                                      self.id, self.__dict__)
 
-if __name__ == "__main__":
-    ss = 'BaseModel'
-    if isinstance(obj, BaseModel):
-        print("Idea success")
-    print(obj.id)

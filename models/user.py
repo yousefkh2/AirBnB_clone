@@ -4,7 +4,7 @@ Module: models
 
 Create user class (inherited from BaseModel)
 """
-import base_model
+from models import base_model
 
 
 class User(base_model.BaseModel):

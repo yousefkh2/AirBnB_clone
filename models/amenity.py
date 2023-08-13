@@ -4,7 +4,7 @@ Module: models
 
 Create amenity class (inherited from BaseModel)
 """
-import base_model
+from models import base_model
 
 
 class Amenity(base_model.BaseModel):

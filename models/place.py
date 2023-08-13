@@ -4,7 +4,7 @@ Module: models
 
 Create place class (inherited from BaseModel)
 """
-import base_model
+from models import base_model
 
 
 class Place(base_model.BaseModel):

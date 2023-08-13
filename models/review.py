@@ -4,7 +4,7 @@ Module: models
 
 Create review class (inherited from BaseModel)
 """
-import base_model
+from models import base_model
 
 
 class Review(base_model.BaseModel):
