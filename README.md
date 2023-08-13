@@ -1,8 +1,6 @@
-** AirBnB clone project:
-
-The goal of the project is to deploy on your server a simple copy of the [AirBnB website](https://www.airbnb.com/).
-
-we won’t implement all the features, only some of them to cover all fundamental concepts.
+## AirBnB clone project:
+-----------------------------------------------------------------------------
+The goal of the project is to deploy on your server a simple copy of the [AirBnB website](https://www.airbnb.com/).we won’t implement all the features, only some of them to cover all fundamental concepts.
 
 we will have a complete web application composed by:
 - A command interpreter to manipulate data without a visual interface, like in a Shell (perfect for development and debugging)

@@ -19,7 +19,12 @@ class HBNBCommand(cmd.Cmd):
     """Intialize User console commands"""
     prompt = '(hbnb) '
 
-    def __is_valid_input(self, line, no_args=1, objects={}):
+
+    def __init__(self):
+        super().__init__()
+        self.objects = storage.all()
+
+    def __is_valid_input(self, line, no_args=1):
         """Check validation of users command arguments"""
         valid_cls = ['BaseModel', 'User', 'City', 'Amenity', 'Place', 'State',
                      'Review']
@@ -28,33 +33,25 @@ class HBNBCommand(cmd.Cmd):
             "** class name missing **",
             "** instance id missing **",
             "** attribute name missing **",
+            "** value missing **",
+            "** attribute name missing **",
             "** value missing **"
                 ]
         i = 0
         while (i < no_args):
             if i >= len(args):
-                print(msg[i])
+                print(msgs[i])
                 return False
             if i == 0:
-                if args[0] is not in valid_cls:
+                if args[0] not in valid_cls:
                     print("** class doesn't exist **")
                     return False
             if i == 1:
-                if ".".join(args[:2]) is not in objects:
+                if ".".join(args[:2]) not in self.objects:
                     print("** no instance found **")
+                    return False
             i += 1
-        # if line:
-        #     args = line.split()
-        #     if args[0] not in valid_cls:
-        #         print(msgs[1])
-        #         return False
-        #     elif len(args) < no_args:
-        #         print(msgs[2])
-        #         return False
-        # else:
-        #     print(msgs[0])
-        #     return False
-        # return True
+        return True
 
     def do_create(self, line):
         """Create new instance"""
@@ -63,40 +60,41 @@ class HBNBCommand(cmd.Cmd):
             obj.save()
             print(obj.id)
 
-
     def do_show(self, line):
         """print string representation of instance"""
         # Not that no handling for args more than required and may cause errors
-        objects = storage.all()
-        if self.__is_valid_input(line, 2, objects):
+        if self.__is_valid_input(line, 2):
             key = line.replace(" ", ".")
             print(storage.all().get(key))
 
     def do_destroy(self, line):
         """Delete required instance object"""
-        objects = storage.all()
-        if self.__is_valid_input(line, 2, objects):
+        if self.__is_valid_input(line, 2):
             key = line.replace(" ", ".")
-            del objects[key]
+            del self.objects[key]
             storage.save()
 
 
     def do_all(self, line):
         """print string representation of all objects
         based on valid given class or not"""
-        objects = storage.all()
+        lst = []
         if not line:
-            for v in objects.values():
-                print(v)
+            for v in self.objects.values():
+                lst.append(v.__str__())
         elif self.__is_valid_input(line, 1):
-            for k, v in objects.items():
+            for k, v in self.objects.items():
                 if line in k:
-                    print(v)
+                    lst.append(v.__str__())
+        print(lst)
 
     def do_update(self, line):
+        """Update object attribute"""
         if self.__is_valid_input(line, 4):
             args = line.split()[:4]
-            
+            obj = self.objects.get(".".join(args[:2]))
+            setattr(obj, args[2], str(args[3]))
+            storage.save()
 
     def emptyline(self):
         """handling emptyline command"""

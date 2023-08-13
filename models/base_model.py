@@ -8,6 +8,7 @@ Create base object, it will be useful to be used as superclass
 import datetime as dt
 import uuid
 #from models import storage
+import models
 
 class BaseModel:
     """
@@ -31,7 +32,7 @@ class BaseModel:
         self.id = str(uuid.uuid4())
         self.created_at = dt.datetime.now()
         self.updated_at = dt.datetime.now()
-        storage.new(self)
+        models.storage.new(self)
 
     def __from_dict(self, kwarg):
         """create an instace from given dictionary"""
@@ -46,7 +47,7 @@ class BaseModel:
     def save(self):
         """save object to file (Note:update object attributes (updated_at))"""
         self.updated_at = dt.datetime.now()
-        storage.save()
+        models.storage.save()
 
 
     def to_dict(self):
