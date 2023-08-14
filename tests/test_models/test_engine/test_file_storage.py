@@ -43,12 +43,14 @@ class TestFileStorage(unittest.TestCase):
         d = self.st.all()
         self.assertIs(d, getattr(FileStorage, self.obj_attr))
 
-    def test_file_existance(self):
+    def test_save(self):
+        """Test Serializing objects properly"""
         pass
 
-    def test_storage_types(self):
+    def test_reload(self):
+        """Test deserializeing objects properly"""
         pass
 
     def tearDown(self):
         """Remove testing files"""
-        
+        pass

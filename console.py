@@ -20,8 +20,8 @@ class HBNBCommand(cmd.Cmd):
     """Intialize User console commands"""
     prompt = "(hbnb) "
 
-    def __init__(self):
-        super().__init__()
+    def __init__(self, *arg, **kwarg):
+        super().__init__(*arg, **kwarg)
         self.objects = storage.all()
 
     def __is_valid_input(self, line, no_args=1):
