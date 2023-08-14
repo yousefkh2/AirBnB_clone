@@ -51,6 +51,8 @@ class TestBaseModel(unittest.TestCase):
         self.bs1.save()
         self.assertNotEqual(self.bs1.created_at.isoformat(),
                               self.bs1.updated_at.isoformat())
+        self.assertIn(self.bs1.__class__.__name__ + "." + self.bs1.id,
+                      models.storage.all())
 
     def test_string_representaion(self):
         """Check Correctly formatting string representation"""
