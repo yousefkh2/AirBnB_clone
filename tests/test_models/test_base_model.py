@@ -9,6 +9,7 @@ import models
 import sys
 import json
 from models.base_model import BaseModel
+import time
 
 
 class TestBaseModel(unittest.TestCase):
@@ -43,3 +44,16 @@ class TestBaseModel(unittest.TestCase):
 
         self.assertIn('__class__', obj_dict)
         self.assertEqual('BaseModel', obj_dict['__class__'])
+
+    def test_save(self):
+        """Test saving objects"""
+        time.sleep(.00001)
+        self.bs1.save()
+        self.assertNotEqual(self.bs1.created_at.isoformat(),
+                              self.bs1.updated_at.isoformat())
+
+    def test_string_representaion(self):
+        """Check Correctly formatting string representation"""
+        str_rep = "[{}] ({}) {}".format(self.bs1.__class__.__name__, self.bs1.id,
+                                        self.bs1.__dict__)
+        self.assertEqual(str_rep, self.bs1.__str__())
