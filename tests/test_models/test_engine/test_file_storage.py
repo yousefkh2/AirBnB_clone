@@ -13,4 +13,14 @@ import json
 
 class TestFileStorage(unittest.TestCase):
     """Test for storage class"""
-    pass
+
+    def setUp(self):
+        """Intialize file storage instance"""
+        self.st = FileStorage()
+
+
+    def test_file_existance(self):
+        pass
+
+    def test_storage_types(self):
+        pass
