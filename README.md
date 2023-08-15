@@ -10,7 +10,7 @@ we will have a complete web application composed by:
 
 ### How to run from Console?
 ---------------------------------------------------------------------------------
-Run the program useing `./console.py` from project directory.
+Run the program using `./console.py` from project directory.
 To see all availabe commands you can type `help`, for example:
 
 ```
